@@ -3,61 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Logging System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #log {
-            height: 200px;
-            overflow-y: scroll;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-    </style>
+    <title>Login Page</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Simple Logging System</h1>
-        <form id="loggingForm">
-            <label for="logMessage">Log Message:</label><br>
-            <input type="text" id="logMessage" name="logMessage" required><br><br>
-            <button type="submit">Log</button>
-        </form>
-        <div id="log"></div>
-    </div>
+    <div id="root"></div>
 
-    <script>
-        document.getElementById('loggingForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var logMessageInput = document.getElementById('logMessage');
-            var logMessage = logMessageInput.value.trim();
-
-            if (logMessage !== '') {
-                logMessageInput.value = '';
-                logMessageInput.focus();
-                log(logMessage);
+    <script type="text/babel">
+        class LoginForm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    username: '',
+                    password: ''
+                };
             }
-        });
 
-        function log(message) {
-            var logDiv = document.getElementById('log');
-            var timestamp = new Date().toLocaleString();
-            var logEntry = '<p><strong>' + timestamp + ':</strong> ' + message + '</p>';
-            logDiv.innerHTML += logEntry;
-            logDiv.scrollTop = logDiv.scrollHeight;
+            handleInputChange = (event) => {
+                const { name, value } = event.target;
+                this.setState({
+                    [name]: value
+                });
+            }
+
+            handleSubmit = (event) => {
+                event.preventDefault();
+                const { username, password } = this.state;
+                alert(`Username: ${username}, Password: ${password}`);
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        <h2>Login</h2>
+                        <div>
+                            <label htmlFor="username">Username:</label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                value={this.state.username} 
+                                onChange={this.handleInputChange} 
+                                required 
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password:</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                value={this.state.password} 
+                                onChange={this.handleInputChange} 
+                                required 
+                            />
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                );
+            }
         }
+
+        ReactDOM.render(<LoginForm />, document.getElementById('root'));
     </script>
 </body>
 </html>
