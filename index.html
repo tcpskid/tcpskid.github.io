@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Logging System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #log {
+            height: 200px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Logging System</h1>
+        <form id="loggingForm">
+            <label for="logMessage">Log Message:</label><br>
+            <input type="text" id="logMessage" name="logMessage" required><br><br>
+            <button type="submit">Log</button>
+        </form>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        document.getElementById('loggingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var logMessageInput = document.getElementById('logMessage');
+            var logMessage = logMessageInput.value.trim();
+
+            if (logMessage !== '') {
+                logMessageInput.value = '';
+                logMessageInput.focus();
+                log(logMessage);
+            }
+        });
+
+        function log(message) {
+            var logDiv = document.getElementById('log');
+            var timestamp = new Date().toLocaleString();
+            var logEntry = '<p><strong>' + timestamp + ':</strong> ' + message + '</p>';
+            logDiv.innerHTML += logEntry;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
