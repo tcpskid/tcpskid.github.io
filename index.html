@@ -1,72 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; media-src 'self'; object-src 'self'; child-src 'self'; form-action 'none'; base-uri 'self'" />
+<meta http-equiv="X-XSS-Protection" content="1;mode=block" always>
+<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
+<meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+<meta http-equiv="Public-Key-Pins" content="pin-sha256=&lt;base64-encoded-hash&gt;; max-age=expireTime [; includeSubdomains][; report-uri=&lt;reporting-uri&gt;]">
+
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Life</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' ws://0.0.0.0:8000;">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:description" content="Undefined" />
+    <meta property="og:site_name" content="Life" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","description":"No One Knows","headline":"Life","name":"Life"}</script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand">
 </head>
+
 <body>
-    <div id="root"></div>
+    <div class="terminal-container">
+        <div class="main-text">
+            <!-- "Arctic echoes ignite triumph in bereavement's inferno." -->
+            <p><span class="highlight">Arctic</span> echoes ignite <span class="highlight">triumph</span> in <span class="highlight">bereavement's</span> inferno.</p>
+        </div>
+    </div>
 
-    <script type="text/babel">
-        class LoginForm extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    username: '',
-                    password: ''
-                };
-            }
-
-            handleInputChange = (event) => {
-                const { name, value } = event.target;
-                this.setState({
-                    [name]: value
-                });
-            }
-
-            handleSubmit = (event) => {
-                event.preventDefault();
-                const { username, password } = this.state;
-                alert(`Username: ${username}, Password: ${password}`);
-            }
-
-            render() {
-                return (
-                    <form onSubmit={this.handleSubmit}>
-                        <h2>Login</h2>
-                        <div>
-                            <label htmlFor="username">Username:</label>
-                            <input 
-                                type="text" 
-                                id="username" 
-                                name="username" 
-                                value={this.state.username} 
-                                onChange={this.handleInputChange} 
-                                required 
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password:</label>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                name="password" 
-                                value={this.state.password} 
-                                onChange={this.handleInputChange} 
-                                required 
-                            />
-                        </div>
-                        <button type="submit">Login</button>
-                    </form>
-                );
-            }
-        }
-
-        ReactDOM.render(<LoginForm />, document.getElementById('root'));
-    </script>
+    <!-- Include your JavaScript files -->
+    <!-- <script src="script/route.js"></script>
+    <script src="script/script.js"></script> -->
 </body>
 </html>
